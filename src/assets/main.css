@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import "tailwindcss";
+@theme {
+    --color-dark-blue: #171A21;
+    --color-light-blue: #1F232D;
+    --color-main-gray: #9BA6B2;
+    --color-main-green:#02B231;
+    --color-main-yellow: #EBD808;
+    --color-main-red: #EB0808;
+}
+html {
+    background: #171A21;
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+input:focus { outline: none; border: none; }
+.searchBar button:hover svg path{
+    fill: white;
+}
+.ratings ul li:last-child {
+    margin-left: 15px;
+}
