@@ -91,7 +91,7 @@ const getTiming = computed(() => {
         <Players v-show="singleStore.playlists.length > 0" :playlists="singleStore.playlists" />
         <div v-if="singleStore.info.similarMovies.length > 0" class="blockReco mb-10">
             <h1 class="text-[24px] text-white mt-20 mb-5">Могут заинтересовать</h1>
-            <div class="cardList grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
+            <div class="cardList grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">
                 <Card  v-for="item in singleStore.info.similarMovies"
                     @click="$router.push({ name: 'Single', params: { id: item.id } })" :key="item.id" :item="item" />
             </div>
