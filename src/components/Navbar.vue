@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue';
 const navItems = [
     { id: 1, path: '/', label: 'Поиск', src: `${import.meta.env.BASE_URL}icons/search.svg` },
-    { id: 2, path: '/popular', label: 'Популярное', src: `${import.meta.env.BASE_URL}icons/search.svg`}
+    { id: 2, path: '/popular', label: 'Популярное', src: `${import.meta.env.BASE_URL}icons/puzzle.svg`}
 ]
 const activeMenu = ref(false);
 function changeToggle() {
