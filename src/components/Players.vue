@@ -39,7 +39,7 @@ const closeModal = (event) => {
                 </div>
             </div>
         </div>
-        <iframe class="w-100 h-150" :src="linkSource.link" frameborder="0" allowfullscreen>
+        <iframe class="w-100 h-150" :src="linkSource.link" frameborder="0" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true'>
         </iframe>
     </div>
 </template>
