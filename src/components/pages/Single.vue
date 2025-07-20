@@ -24,6 +24,7 @@ import Players from '../Players.vue';
 
 const singleStore = useSingleStore();
 const route = useRoute()
+const baseURL = import.meta.env.BASE_URL;
 
 
 
@@ -82,8 +83,8 @@ const getTiming = computed(() => {
                 </p>
                 <div class="ratings flex md:mt-auto mt-10">
                     <ul class="flex text">
-                        <Rating :value="singleStore.info.ratings.kp" src="/icons/kp.svg" />
-                        <Rating :value="singleStore.info.ratings.imdb" src="/icons/imdb.svg" />
+                        <Rating :value="singleStore.info.ratings.kp" :src="`${baseURL}/icons/kp.svg`" />
+                        <Rating :value="singleStore.info.ratings.imdb" :src="`${baseURL}/icons/imdb.svg`" />
                     </ul>
                 </div>
             </div>
