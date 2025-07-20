@@ -82,8 +82,8 @@ const getTiming = computed(() => {
                 </p>
                 <div class="ratings flex md:mt-auto mt-10">
                     <ul class="flex text">
-                        <Rating :value="singleStore.info.ratings.kp" :src="'/icons/kp.svg'" />
-                        <Rating :value="singleStore.info.ratings.imdb" :src="'/icons/imdb.svg'" />
+                        <Rating :value="singleStore.info.ratings.kp" src="/icons/kp.svg" />
+                        <Rating :value="singleStore.info.ratings.imdb" src="/icons/imdb.svg" />
                     </ul>
                 </div>
             </div>
