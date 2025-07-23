@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/src/libs/player_.js" async defer></script>
-    <title>Кинобулка</title>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <!-- Подставьте правильный путь к вашему скрипту из index.html -->
+    <script type="text/javascript">
+      // Проверяем, поддерживает ли браузер sessionStorage
+      (function() {
+        var segmentCount = 0; // Количество сегментов в пути /kinobulka/ (в вашем случае 1)
+        var l = window.location;
+        // l.pathname.split('/').length - 1 - segmentCount - 1
+        // Учитываем начальный слэш и имя репозитория
+        var pathSegments = l.pathname.split('/').filter(function(seg) { return seg.length > 0; });
+        // Определяем количество сегментов, которые нужно отбросить (например, для /kinobulka/subpage -> отбрасываем /kinobulka)
+        var segmentsToDrop = 1; // Так как ваш base = '/kinobulka/', нужно отбросить 1 сегмент
+        var redirectPathSegments = pathSegments.slice(segmentsToDrop);
+
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          l.pathname.split('/').slice(0, 1 + segmentsToDrop).join('/') + '/#' +
+          redirectPathSegments.join('/')
+        );
+      })();
+    </script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-    <script type="module" src="/src/libs/player_.js"></script>
+    Redirecting...
   </body>
 </html>
