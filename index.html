@@ -5,6 +5,27 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Кинобулка</title>
+    <script>
+      (function(){
+        var hashPath = window.location.hash.replace(/^#\/?/, ''); // Убираем # и возможный начальный слэш
+        if (hashPath) {
+             if (window.history && window.history.replaceState) {
+                 // Формируем новый путь: base + hashPath
+                 var base = '/kinobulka/'; // Должно совпадать с вашим `base` в vite.config.js
+                 var newPath = base + hashPath + (window.location.search ? window.location.search : '');
+                 // Проверяем, не совпадает ли уже путь (во избежание зацикливания)
+                 var currentPathNormalized = window.location.pathname + window.location.search;
+                 var newPathNormalized = newPath + (newPath.endsWith('/') && !window.location.search ? '' : ''); // Нормализация
+                 if (currentPathNormalized !== newPathNormalized) {
+                     window.history.replaceState(null, null, newPath);
+                 } else {
+                    // Если путь совпадает, просто очищаем хэш, чтобы не мешал
+                    window.history.replaceState(null, null, newPath);
+                 }
+             }
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>
