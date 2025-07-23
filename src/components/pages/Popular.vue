@@ -42,7 +42,7 @@ watch(type, async(newType) => {
             </div>
         </div>
         <Preloader v-if="movieStore.isLoading" />
-        <div v-else class="cardList grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-11">
+        <div v-else class="cardList grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-11">
             <Card 
             v-for="item in (type === 'movie' ? movieStore.movie : movieStore.tv)" 
             @click="$router.push({name:'Single',params:{id:item.id}})"

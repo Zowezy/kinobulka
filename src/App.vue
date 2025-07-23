@@ -10,7 +10,7 @@ import Navbar from './components/Navbar.vue';
 </script>
 <template>
 <Navbar />
-<div class="container mx-auto">
+<div class="container mx-auto sm:px-25 lg:px-20 xl:px-10 2xl:px-0">
   <RouterView />
   <!-- <Popular /> -->
   <!-- <Single /> -->
