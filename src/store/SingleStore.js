@@ -8,7 +8,7 @@ export const useSingleStore = defineStore('singleStore',{
             name: '',
             description: '',
             year: null,
-            movieLength: 0,
+            length: 0,
             genre: '',
             poster: '',
             ratings: {
@@ -41,14 +41,14 @@ export const useSingleStore = defineStore('singleStore',{
         async getAboutItem(movieId) {
             try {
                 const response = await api.getSingleItem(movieId);
-                const {id,name,description,year,movieLength,genres,poster,rating,countries,similarMovies} = response;
+                const {id,name,type,description,year,movieLength,seriesLength,genres,poster,rating,countries,similarMovies} = response;
                 this.info = {
                 id,
                 name,
                 poster: poster?.url || '',
                 description,
                 year,
-                movieLength,
+                length: type === 'movie' ? movieLength : seriesLength,
                 genre: genres?.[0]?.name || 'Не указано',
                 ratings: {
                     kp: rating?.kp || 0,

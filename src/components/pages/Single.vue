@@ -46,7 +46,7 @@ onBeforeRouteUpdate((to, from, next) => {
 
 
 const getTiming = computed(() => {
-    const length = singleStore.info.movieLength || 0;
+    const length = singleStore.info.length || 0;
     const hours = Math.floor(length / 60);
     const minutes = length % 60;
     return `${hours}ч ${minutes}мин`;
