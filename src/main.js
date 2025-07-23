@@ -8,7 +8,7 @@ import Popular from './components/pages/Popular.vue'
 import Single from './components/pages/Single.vue'
 
 const router = createRouter({
-    history:createWebHistory(process.env.BASE_URL),
+    history:createWebHistory(import.meta.env.BASE_URL),
     routes:[
     {
         name:'Search',
