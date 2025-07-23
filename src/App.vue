@@ -9,12 +9,16 @@ import Navbar from './components/Navbar.vue';
 
 </script>
 <template>
-<Navbar />
-<div class="container mx-auto sm:px-25 lg:px-20 xl:px-10 2xl:px-0">
-  <RouterView />
+<div class="flex min-h-screen">
+  <Navbar />
+  <main class="flex-1 sm:ml-20">
+    <div class="container mx-auto p-5">
+      <RouterView />
+    </div>
+  </main>
   <!-- <Popular /> -->
   <!-- <Single /> -->
   <!-- <Search />  -->
-  </div>
+</div>
 </template>
 <style scoped></style>

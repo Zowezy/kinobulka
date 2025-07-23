@@ -17,8 +17,8 @@ function changeToggle() {
         @click="changeToggle">
         <span class="text-[19px]">☰</span>
     </button>
-    <nav class="sidebar z-1 sm:fixed left-0 top-0 bg-light-blue float-left min-h-max h-[100%] fixed p-0 sm:p-1 overflow-hidden duration-200 ease-in"
-        :class="[activeMenu ? 'w-[65px] sm:w-[250px]' : 'w-[0px] sm:w-[70px]']">
+    <aside class="sidebar z-1 sm:fixed flex flex-col left-0 top-0 bg-light-blue float-left min-h-max h-[100%] fixed p-0 sm:p-1 overflow-hidden duration-200 ease-in"
+        :class="[activeMenu ? 'w-[65px] sm:w-[230px]' : 'w-[0px] sm:w-[70px]']">
         <div class="hidden sm:block logo text-center mt-10">
             <p class="text-[32px]">🍞</p>
         </div>
@@ -42,5 +42,5 @@ function changeToggle() {
                         <img class="mr-8 w-[19px]" :src="item.src" alt=""><span>{{ item.label }}</span>
                 </router-link>
         </div>
-    </nav>
+    </aside>
 </template>
