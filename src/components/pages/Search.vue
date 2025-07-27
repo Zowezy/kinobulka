@@ -46,7 +46,7 @@ const sendSearchQuery = () => {
         </form>
 
       </div>
-      <div v-if="searchStore.result.docs" class="cardList grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-15">
+      <div v-if="searchStore.result.docs" class="cardList grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5">
         <Card  v-for="items in searchStore.result.docs" :key="items.id" :item=items @click="$router.push({name:'Single',params:{id:items.id}})" />
       </div>
       <Preloader class="mt-50" v-if="searchStore.isLoading" />
