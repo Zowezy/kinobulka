@@ -26,12 +26,12 @@ import 'animate.css'
 
 </style>
 <template>
-    <div class="card md:m-0 m-2 mb-10 md:mb-0 relative cursor-pointer mt-5 sm:mt-0 animate__animated animate__fadeIn hover:scale-110 transition-transform duration-300 ease-in-out">
-        <div class="poster h-[100%] md:h-[330px]">
+    <div class="card bg-light-blue relative cursor-pointer mt-5 animate__animated animate__fadeIn hover:scale-105 transition-transform duration-300 ease-in-out">
+        <div class="poster h-[100%] h-[330px]">
             <img class="h-[100%] w-[100%] object-cover rounded-[6px]" :src="getPosterImage" alt="">
         </div>
-        <div class="mainText mt-8px">
-            <h1 class="text-[16px] text-white mt-[8px]">{{ props.item.name }}</h1>
+        <div class="mainText px-3 py-4">
+            <h1 class="text-sm text-white block h-[50px]">{{ props.item.name }}</h1>
             <div class="miniDescr flex justify-between text-main-gray text-[12px] mt-[10px]">
                 <p>{{ props.item.genres ? props.item.genres[0].name : '' }}</p>
                 <p>{{ props.item.year }}</p>
