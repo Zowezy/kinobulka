@@ -26,9 +26,7 @@ const singleStore = useSingleStore();
 const route = useRoute()
 const baseURL = import.meta.env.BASE_URL;
 
-
-
-const getData = async (id) => {
+const getData = async(id) => {
     await singleStore.fetchMovieData(id)
 }
 
@@ -37,21 +35,22 @@ onMounted(() => {
     getData(route.params.id)
 })
 
-onBeforeRouteUpdate((to, from, next) => {
+onBeforeRouteUpdate(async(to, from, next) => {
     if (to.params.id !== from.params.id) {
-        getData(to.params.id)
+        await getData(to.params.id)
     }
     next()
 })
 
 
 const getTiming = computed(() => {
-    const length = singleStore.info.length || 0;
+    const length = singleStore.info.duration || 0;
     const hours = Math.floor(length / 60);
     const minutes = length % 60;
     return `${hours}ч ${minutes}мин`;
 });
 
+console.log(singleStore.info)
 
 
 </script>
@@ -89,7 +88,10 @@ const getTiming = computed(() => {
                 </div>
             </div>
         </div>
-        <Players v-show="singleStore.playlists.length > 0" :playlists="singleStore.playlists" />
+        <Players v-if="singleStore.playlists.length > 0" :playlists="singleStore.playlists" />
+        <div v-else class="blockPlayer flex justify-center m-20">
+            <p class="flex p-3 sm:px-20 sm:py-3 bg-light-blue text-white rounded-[6px] text-center">Видео не найдено<br />Обновите страницу или зайдите позже</p>
+        </div>
         <div v-if="singleStore.info.similarMovies.length > 0" class="blockReco mb-10">
             <h1 class="text-[24px] text-white mt-20 mb-5">Могут заинтересовать</h1>
             <div class="cardList grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10">

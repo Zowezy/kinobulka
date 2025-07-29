@@ -57,10 +57,21 @@ export default {
     getVideo(id) {
       return playersApiLumen.get(`short?api_token=84a1846c97497dccf7c9758d20552c3e&kinopoisk_id=${id}`)
     },
+    // getVideos(id) {
+    //   return axios.get(`https://api.allorigins.win/raw?url=${encodeURIComponent(`https://p.ddbb.lol/api/players?kinopoisk=${id}`)}`, {
+    //     responseType: 'json'
+    //   });
+    // },
+    // getVideos(id) {
+    //   return axios.get(`https://p.ddbb.lol/api/players?kinopoisk=${id}`,{
+    //     responseType: 'json'
+    //   });
+    // },
     getVideos(id) {
-    return axios.get(`https://api.allorigins.win/raw?url=${encodeURIComponent(`https://p.ddbb.lol/api/players?kinopoisk=${id}`)}`, {
-      responseType: 'json'
-    });
-
+      const proxyUrl = 'https://api.codetabs.com/v1/proxy?quest=';
+      const targetUrl = `https://p.ddbb.lol/api/players?kinopoisk=${id}`;
+      return axios.get(proxyUrl + targetUrl,{
+        responseType: 'json'
+      });
     }
 }

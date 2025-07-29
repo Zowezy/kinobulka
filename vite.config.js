@@ -10,6 +10,7 @@ export default defineConfig({
   plugins: [
     vue(),
     tailwindcss(),
+    vueDevTools(),
     ghPages()
   ],
   resolve: {

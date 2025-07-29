@@ -8,7 +8,7 @@ export const useSingleStore = defineStore('singleStore',{
             name: '',
             description: '',
             year: null,
-            length: 0,
+            duration: 0,
             genre: '',
             poster: '',
             ratings: {
@@ -42,20 +42,21 @@ export const useSingleStore = defineStore('singleStore',{
             try {
                 const response = await api.getSingleItem(movieId);
                 const {id,name,type,description,year,movieLength,seriesLength,genres,poster,rating,countries,similarMovies} = response;
+                debugger;
                 this.info = {
                 id,
                 name,
                 poster: poster?.url || '',
                 description,
                 year,
-                length: type === 'movie' ? movieLength : seriesLength,
+                duration: type === 'movie' ? movieLength : seriesLength,
                 genre: genres?.[0]?.name || 'Не указано',
                 ratings: {
                     kp: rating?.kp || 0,
                     imdb: rating?.imdb || 0
                 },
                 country:countries[0].name,
-                similarMovies:similarMovies.slice(0,5)
+                similarMovies:similarMovies ? similarMovies.slice(0,5) : 0
                 }
             } catch (error) {
                 console.log('Ошибка: ' + error)
