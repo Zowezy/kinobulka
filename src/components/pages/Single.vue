@@ -50,7 +50,6 @@ const getTiming = computed(() => {
     return `${hours}ч ${minutes}мин`;
 });
 
-console.log(singleStore.info)
 
 
 </script>

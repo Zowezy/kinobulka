@@ -13,6 +13,7 @@ export const userSearchStore = defineStore('searchStore',{
     },
     actions:{
         async getItemsByQuery(query) {
+            this.result = null;
             this.isLoading = true;
             try {
                 const response = await api.getSearchItems(query);

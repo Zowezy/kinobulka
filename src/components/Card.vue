@@ -19,21 +19,21 @@ import 'animate.css'
     const getPosterImage = computed(() => {
         return props.item.poster?.url ? props.item.poster.url : '/no_img.png';
     });
-
 </script>
+
 
 <style>
 
 </style>
 <template>
-    <div class="card bg-light-blue relative cursor-pointer mt-5 animate__animated animate__fadeIn hover:scale-105 transition-transform duration-300 ease-in-out">
+    <div class="card bg-light-blue relative rounded-[6px] cursor-pointer mt-5 animate__animated animate__fadeIn hover:scale-105 transition-transform duration-300 ease-in-out">
         <div class="poster h-[100%] h-[330px]">
             <img class="h-[100%] w-[100%] object-cover rounded-[6px]" :src="getPosterImage" alt="">
         </div>
         <div class="mainText px-3 py-4">
             <h1 class="text-sm text-white block h-[50px]">{{ props.item.name }}</h1>
             <div class="miniDescr flex justify-between text-main-gray text-[12px] mt-[10px]">
-                <p>{{ props.item.genres ? props.item.genres[0].name : '' }}</p>
+                <p>{{ props.item.genres.length > 0 ? props.item.genres[0].name : '' }}</p>
                 <p>{{ props.item.year }}</p>
             </div>
         </div>

@@ -8,12 +8,12 @@
 
 <template>
   <content-loader
-    class="block"
-    viewBox="0 0 236 330"
+    class="w-[100%] relative mt-5 rounded-[6px]"
+    viewBox="0 0 236 460"
     :speed="1"
     primaryColor="#1f232d"
     secondaryColor="#171a21"
   >
-    <rect x="0" y="5" rx="0" ry="0" width="236" height="330" /> 
+    <rect x="0" y="0" rx="0" ry="0" width="236px" height="460px" /> 
   </content-loader>
 </template>

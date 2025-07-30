@@ -1,15 +1,12 @@
 <script setup>
-import { userMovieStore } from '@/store/MovieStore';
 import Card from '../Card.vue';
 import { userSearchStore } from '@/store/SearchStore';
 import { ref } from 'vue';
-import Preloader from '../Preloader.vue';
-import { useRoute } from 'vue-router';
 import SkeletonCard from '../SkeletonCard.vue';
 
 const searchStore = userSearchStore();
 
-const searchInput = ref();
+const searchInput = ref('');
 
 const sendSearchQuery = () => {
   searchStore.getItemsByQuery(searchInput.value);
@@ -19,7 +16,7 @@ const sendSearchQuery = () => {
 
 <template>
     <div class="fastSearch flex flex-col items-center mt-20">
-      <div class="searchBar mt-20">
+      <div class="searchBar my-20">
         <form class="flex justify-center" action="" @submit.prevent="sendSearchQuery" >
           <input
             v-model="searchInput"
@@ -48,9 +45,13 @@ const sendSearchQuery = () => {
 
       </div>
       <div class="cardList grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5">
-        <Card  v-if="searchStore.result.docs" v-for="items in searchStore.result.docs" :key="items.id" :item=items @click="$router.push({name:'Single',params:{id:items.id}})" />
-        <!-- <SkeletonCard v-else v-for="i in 5" :key="i"/> -->
+        <SkeletonCard v-if="searchStore.isLoading" v-for="i in 6" :key="i"/>
+        <Card
+          v-for="items in (searchStore.result?.docs || [])" 
+          :key="items.id" 
+          :item="items" 
+          @click="$router.push({name:'Single',params:{id:items.id}})" 
+        />
       </div>
-      <Preloader class="mt-50" v-if="searchStore.isLoading" />
     </div>
 </template>
