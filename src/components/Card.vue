@@ -33,7 +33,7 @@ import 'animate.css'
         <div class="mainText px-3 py-4">
             <h1 class="text-sm text-white block h-[50px]">{{ props.item.name }}</h1>
             <div class="miniDescr flex justify-between text-main-gray text-[12px] mt-[10px]">
-                <p>{{ props.item.genres.length > 0 ? props.item.genres[0].name : '' }}</p>
+                <p>{{ props.item.genres?.length ? props.item.genres[0].name : '' }}</p>
                 <p>{{ props.item.year }}</p>
             </div>
         </div>
