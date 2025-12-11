@@ -63,6 +63,7 @@ export const useSingleStore = defineStore('singleStore',{
             }
         },
         async getVideo(id) {
+            this.playlists = [];
             try {
                 const response = await api.getVideos(id);
                 this.playlists = response.data;
