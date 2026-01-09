@@ -51,7 +51,7 @@ export default {
     },
   // Популярное
     getPopularItems(type,year) {
-      return api.get(`movie?page=1&limit=30&selectFields=id&selectFields=name&selectFields=year&selectFields=rating&selectFields=genres&selectFields=poster&sortField=votes.imdb&sortType=-1&type=${type}&selectFields=votes&year=${year}`)
+      return api.get(`movie?page=1&limit=30&selectFields=id&selectFields=name&selectFields=year&selectFields=rating&selectFields=genres&selectFields=poster&sortField=votes.imdb&sortType=-1&type=${type}&selectFields=votes&year=${year-1}-${year}`)
     },
     getVideo(id) {
       return playersApiLumen.get(`short?api_token=84a1846c97497dccf7c9758d20552c3e&kinopoisk_id=${id}`)
