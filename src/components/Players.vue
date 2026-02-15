@@ -1,28 +1,41 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 
+const props = defineProps(['playlists']);
 
-const props = defineProps(['playlists'])
+const playlistItems = computed(() =>
+  Array.isArray(props.playlists) ? props.playlists : []
+);
 
 const isModalOpen = ref(false);
-const linkSource = ref({
-    name:props.playlists[0].source,
-    link:props.playlists[0].iframeUrl
-})
+const linkSource = ref({ name: '', link: '' });
+
+watch(
+  () => props.playlists,
+  (list) => {
+    const arr = Array.isArray(list) ? list : [];
+    if (arr.length > 0) {
+      linkSource.value = {
+        name: arr[0].source ?? '',
+        link: arr[0].iframeUrl ?? ''
+      };
+    }
+  },
+  { immediate: true }
+);
 
 const changeSource = (item) => {
-    linkSource.value = {
-        name:item.source,
-        link:item.iframeUrl
-    }
-}
+  linkSource.value = {
+    name: item.source ?? '',
+    link: item.iframeUrl ?? ''
+  };
+};
 
 const closeModal = (event) => {
-    if (event.target.classList.contains('wrapPlayers')) {
-        isModalOpen.value = false;
-    }
-}
-
+  if (event.target.classList.contains('wrapPlayers')) {
+    isModalOpen.value = false;
+  }
+};
 </script>
 
 <template>
@@ -34,8 +47,7 @@ const closeModal = (event) => {
                 <div class="players fixed left-1/2 top-1/2 md:w-[40%] md:h-[20%] w-[80%] h-[35%] bg-light-blue z-20 transform -translate-x-1/2 -translate-y-1/2 flex justify-center text-center rounded-[6px]">
                     <div class="listOfPlayers mt-15">
                         <h1 class="text-white text-2xl mb-5 text-center">Доступные плееры:</h1>
-                        <button @click="() => changeSource(item)" v-for="item in props.playlists" :key="item.id" class="bg-dark-blue py-2 px-5 text-white font-bold rounded-[6px] text-lg m-1 cursor-pointer">{{ item.source }}</button>
-                    </div>
+                        <button @click="() => changeSource(item)" v-for="(item, index) in playlistItems" :key="item.id ?? index" class="bg-dark-blue py-2 px-5 text-white font-bold rounded-[6px] text-lg m-1 cursor-pointer">{{ item.source }}</button>                    </div>
                 </div>
             </div>
         </div>

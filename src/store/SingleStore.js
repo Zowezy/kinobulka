@@ -66,7 +66,11 @@ export const useSingleStore = defineStore('singleStore',{
             this.playlists = [];
             try {
                 const response = await api.getVideos(id);
-                this.playlists = response.data;
+                const raw = response.data;
+                // Нормализация: разные прокси могут вернуть массив или объект с массивом
+                this.playlists = Array.isArray(raw)
+                    ? raw
+                    : (raw?.list ?? raw?.data ?? raw?.items ?? (raw && typeof raw === 'object' && !Array.isArray(raw) ? Object.values(raw) : []));
             } catch (error) {
                 console.log('Ошибка: ' + error)
             }
