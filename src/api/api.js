@@ -1,3 +1,4 @@
+import { fetchWithProxyFallback } from '@/utils/proxyFetch';
 import axios from 'axios';
 
 const api = axios.create({
@@ -67,10 +68,7 @@ export default {
     //   });
     // },
     getVideos(id) {
-      const proxyUrl = 'https://api.codetabs.com/v1/proxy?quest=';
       const targetUrl = `https://p.ddbb.lol/api/players?kinopoisk=${id}`;
-      return axios.get(proxyUrl + targetUrl,{
-        responseType: 'json'
-      });
+      return fetchWithProxyFallback(targetUrl);
     }
 }
