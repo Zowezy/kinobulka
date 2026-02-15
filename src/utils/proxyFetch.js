@@ -11,10 +11,8 @@ export async function fetchWithProxyFallback(targetUrl, timeout = 10000) {
           responseType: 'json',
           timeout
         });
-        console.log('✅ Успешно через Vite proxy');
         return { data: response.data || response };
       } catch (error) {
-        console.warn('⚠️ Vite proxy недоступен, используем внешние прокси');
       }
     }
   
@@ -57,7 +55,7 @@ export async function fetchWithProxyFallback(targetUrl, timeout = 10000) {
     for (const proxy of proxyServices) {
       try {
         const proxyUrl = proxy.buildUrl(targetUrl);
-        console.log(`🔄 Пробуем прокси: ${proxy.name}`);
+        // console.log(`🔄 Пробуем прокси: ${proxy.name}`);
         
         const response = await axios.get(proxyUrl, {
           responseType: 'json',
@@ -65,17 +63,19 @@ export async function fetchWithProxyFallback(targetUrl, timeout = 10000) {
           validateStatus: (status) => status < 500
         });
   
-        const data = proxy.transformResponse(response);
+        if (response.status < 200 || response.status >= 300) {
+          throw new Error(`HTTP ${response.status}`);
+        }
         
-        // Проверяем, что получили валидные данные
+        const data = proxy.transformResponse(response);
         if (data && (!data.error && !data.message?.includes('error'))) {
-          console.log(`✅ Успешно через прокси: ${proxy.name}`);
+          // console.log(`✅ Успешно через прокси: ${proxy.name}`);
           return { data };
         } else {
           throw new Error('Invalid response data');
         }
       } catch (error) {
-        console.warn(`❌ Прокси ${proxy.name} недоступен:`, error.message);
+        // console.warn(`❌ Прокси ${proxy.name} недоступен:`, error.message);
         errors.push({ proxy: proxy.name, error });
         continue;
       }
