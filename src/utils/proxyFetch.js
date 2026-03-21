@@ -15,6 +15,24 @@ export async function fetchWithProxyFallback(targetUrl, timeout = 10000) {
       } catch (error) {
       }
     }
+
+    // В продакшене используем Netlify Functions (собственный сервер)
+    if (!import.meta.env.DEV) {
+      try {
+        const response = await axios.get('/api/proxy', {
+          params: { url: targetUrl },
+          timeout,
+          validateStatus: (status) => status < 500
+        });
+        
+        if (response.status === 200 && response.data) {
+          console.log('✅ Успешно через Netlify Functions');
+          return { data: response.data };
+        }
+      } catch (error) {
+        console.warn('⚠️ Netlify Functions недоступен, пробуем fallback прокси:', error.message);
+      }
+    }
   
     const proxyServices = [
       {

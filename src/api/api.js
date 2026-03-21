@@ -2,7 +2,7 @@ import { fetchWithProxyFallback } from '@/utils/proxyFetch';
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://api.poiskkino.dev/v1.4/', // Пример API
+  baseURL: 'https://api.poiskkino.dev/v1.4/',
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
